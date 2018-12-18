@@ -4,7 +4,7 @@
 ## Sommaire
 1. Introduction
 2. Présentation des commandes principales
-3. Bonne pratique pour éviter les conflits et les erreurs
+3. Bonnes pratiques pour éviter les conflits et les erreurs
 4. Utilisation des issues
 5. Utilisation des pull request
 
@@ -19,10 +19,10 @@ Pour configurer votre git si cela n'est pas déjà fait vous devez saisir les co
 * git config --global user.name "ton nom"
 * git config --global user.email "ton.email@truc.com"
 --------
-pour que soit plus simple mettons nos pseudo et email utilisé sur github
+pour que ce soit plus simple mettons nos pseudo et email utilisé sur github
 
 ### Importation du projet en local
-Le projet est déjà créé sur le repository distant il sufit de créer votre propre repository local. Pour cela placer vous où vous voluez sur votre ordinateur avec la commande :
+Le projet est déjà créé sur le repository distant il sufit de créer votre propre repository local. Pour cela placez vous où vous voulez sur votre ordinateur avec la commande :
 * cd /c/ouvousvoulez
 -------
 puis entrez la commande :
@@ -30,13 +30,13 @@ puis entrez la commande :
 ---------
 Vous pouvez trouver l'adresse du repository distant sur gitHub quand vous êtes dans le projet en cliquant sur "clone or download" (un bouton vert).Une fois que cela est fait, placez vous à l'intèrieur du projet, si tout c'est bien passé vous devriez avoir un master qui apparait entre parenthèse après le détail du chemin d'accés.
 
-###les commandes de base git
+### les commandes de base git
 
 Si vous voulez voir l'état de votre repository local vous devez rentrer la commande suivante.
 * git status
 ------
 
-cette commande vous indique si vous avez des fichiers qui ont été modifié des fichiers qui n'ont pas encore été commmit.
+cette commande vous indique si vous avez des fichiers qui ont été modifié, des fichiers qui n'ont pas encore été commmit.
 
 ------
 ------
@@ -97,13 +97,23 @@ cette commande est irréversible à ma connaissance il faut être bien sur avant
 ------
 Il nous faut également récupérer les diferentes modification qui se font sur la branche master.Pour cela nous utilisons la commande :
 * git pull origin master
-------
-------
 
+## Bonne pratique pour éviter les collisions et les erreurs
 
-## Bonne pratique pour éviter les conflits et les erreurs
+Pour éviter les collisions dans notre code et l'ajout dd'erreur, quand nous entreprenons de dévlopper une nouvelle fonctionalité, nous devons suivre les étapes suivantes.
+1. créer une nouvelle branche
+2. faire les modifications sur cette nouvelle branche
+3. une fois que le code fonctionne, télécharger les dernieres modifications apportées à la branche principal pour vérifier si il fonctionne toujours. Le modifier en conséquence et réhitérer l'opération.
+4. une fois que le code fonctionne avec les dernieres modifications, le soummettre à la verification d'une autre personne pour qu'il le vallide et merge la branche sur la branche pricipale. Pour cela utiliser une Pullrequest.
+5. suprimer la branche une fois que le pull request est validée
+
+----
+Egalement pour éviter les pertes de travail à cause de problème d'ordinateur nous devons push notre code sur git le soir après une séance de travail.
 
 ## Utilisation des issues
 
+Les issues permettent de relever des problemes, erreurs ou bug dans notre code. Cela peut aussi permettre à pointer une difficulter rencontrer pour ce faire aider par les autres membres du groupe.
+
 ## Utilisation des pull request
 
+Cela permet de faire valider son code par une autre personne donc cela permet de voir si son code est facilement compréhensible par les autres et permet à chacun d'avoir une bonne connaissance du projet.
