@@ -39,14 +39,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         this.event = (Button) findViewById(R.id.EVENEMENT);
 
-        event.setOnClickListener(new View.OnClickListener() {
+        /*event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity2 = new Intent(getApplicationContext(), activity_event.class);
                 startActivity(otherActivity2);
                 finish();
             }
-        });
+        });*/
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
