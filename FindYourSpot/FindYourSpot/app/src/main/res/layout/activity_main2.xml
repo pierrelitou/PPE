@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="462dp"
+        android:columnCount="3"
+        android:rowCount="3">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Cueillette de Pommes"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Visite des Catacombes"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Visite Gallerie d'Art"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Degustation Vin"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Degustation Vin"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Tour en peniche"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:orientation="vertical">
+
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="Degustation Champagne"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ACTIVITES"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="ACTIVITES" />
+
+        <Button xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/CARTE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="CARTE" />
+
+        <Button xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/EVENEMENT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="EVENEMENT" />
+
+    </LinearLayout>
+
+</LinearLayout>
