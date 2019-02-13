@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button test;
+    private Button activity;
     private Button event;
 
     @Override
@@ -25,9 +25,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
-        this.test = (Button) findViewById(R.id.ACTIVITES);
+        this.activity = (Button) findViewById(R.id.ACTIVITES);
 
-        test.setOnClickListener(new View.OnClickListener() {
+        activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
