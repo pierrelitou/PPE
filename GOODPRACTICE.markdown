@@ -84,7 +84,7 @@ Vous pouvez choisir de vous positioner sur une branche avec la commande:
 Une fois le travail finie sur un branch vous pouvez la merger sur une autre branche. Vous devez d'abord vous placer sur la branche qui va recevoir les modifications de la branche que vous voulez merger puis ensuite taper la commande suivante : 
 * git merge nom-de-la-branche-à-merger
 ----
-Nous utiliserons trés raremement cette commande puisque nous utiliserons les pull-request pour que notre code soit valider par une autre personne de notre groupe.
+Nous utiliserons trés raremement cette commande puisque nous utiliserons les pull-request pour que notre code soit validé par une autre personne de notre groupe.
 ----
 Nous pouvons aussi vouloir supprimer notre branche une fois qu'elle n'est plus utile pour cela on entre dans le terminal :
 * git branch -d nom-de-la-branche-à-supprimer
