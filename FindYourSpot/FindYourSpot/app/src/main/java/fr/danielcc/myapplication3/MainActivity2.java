@@ -20,8 +20,7 @@ import java.util.HashMap;
 public class MainActivity2 extends AppCompatActivity{
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetActivities.php";
-
+    public static final String URL_GET_ALL = "http://10.0.2.2/findyourspot/GetActivities.php";
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
