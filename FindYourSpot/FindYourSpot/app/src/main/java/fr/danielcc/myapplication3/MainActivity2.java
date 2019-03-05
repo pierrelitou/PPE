@@ -7,28 +7,35 @@ import android.os.Bundle;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
-
+import android.widget.Button;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.content.Intent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity2 extends AppCompatActivity{
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.37/findyourspot/GetActivities.php";
+    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetActivities.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
     public static final String TAG_NAME = "nameactivity";
+    public static final String TAG_LOC = "location";
+    public static final String TAG_DES = "description";
+    //public static final String TAG_IMG = "lienimg";
 
     private ListView listView;
     private String JSON_STRING;
+
+    private Button MAP;
+    private Button ACTIVITIES;
+    private Button EVENT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,28 @@ public class MainActivity2 extends AppCompatActivity{
 
         //listView.setOnItemClickListener(this);
         getJSON();
+
+        this.MAP = (Button) findViewById(R.id.CARTEACT);
+        this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
+        this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
+
+        MAP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
+        ACTIVITIES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
     }
 
     private void showEmployee(){
@@ -51,10 +80,18 @@ public class MainActivity2 extends AppCompatActivity{
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(TAG_ID);
                 String nameactivity = jo.getString(TAG_NAME);
+                String location = jo.getString(TAG_LOC);
+                String description = jo.getString(TAG_DES);
+      //          String lienimg = jo.getString(TAG_IMG);
 
                 HashMap<String,String> employees = new HashMap<>();
+
                 employees.put(TAG_ID,id);
                 employees.put(TAG_NAME,nameactivity);
+                employees.put(TAG_LOC,location);
+                employees.put(TAG_DES,description);
+        //        employees.put(TAG_IMG,lienimg);
+
                 list.add(employees);
             }
 
@@ -64,8 +101,20 @@ public class MainActivity2 extends AppCompatActivity{
 
         ListAdapter adapter = new SimpleAdapter(
                 MainActivity2.this, list, R.layout.list_item,
-                new String[]{TAG_ID,TAG_NAME},
-                new int[]{R.id.id, R.id.nameactivity});
+                new String[]{
+                        TAG_ID,
+                        TAG_NAME,
+                        TAG_LOC,
+                        TAG_DES,
+          //              TAG_IMG
+                          },
+                new int[]{
+                        R.id.id,
+                        R.id.nameactivity,
+                        R.id.location,
+                        R.id.description,
+            //            R.id.lienimg
+                        });
 
         listView.setAdapter(adapter);
     }
