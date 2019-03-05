@@ -20,8 +20,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Button activity;
-    private Button event;
-
+    private Button EVENT;
+    private Button MAP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
         this.activity = (Button) findViewById(R.id.ACTIVITES);
+
 
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +41,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-        this.event = (Button) findViewById(R.id.EVENEMENT);
+        this.MAP = (Button) findViewById(R.id.CARTE);
+        MAP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
+        this.EVENT = (Button) findViewById(R.id.EVENEMENT);
+        EVENT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), EventActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
+
 
         /*event.setOnClickListener(new View.OnClickListener() {
             @Override
