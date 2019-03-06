@@ -91,14 +91,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
 
         ArrayList<LatLng> coor = new ArrayList<LatLng>();
-        coor.add(new LatLng(128,138));
-        coor.add(new LatLng(128,135));
-        coor.add(new LatLng(128,133));
-        coor.add(new LatLng(128,137));
+        coor.add(new LatLng(28,88));
+        coor.add(new LatLng(28.1,88.2));
+        coor.add(new LatLng(28.3,79.9));
+        coor.add(new LatLng(28.4,79.7));
         // Add a marker in Sydney and move the camera
         for(int i=0; i<coor.size();i++){
             googleMap.addMarker(new MarkerOptions().position(coor.get(i)).title("Marker "+i));
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(coor.get(i)));
+            //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28,88)));
         }
         if (coor.size()!=4) System.err.print("size of coor  "  + coor.size());
     }
