@@ -4,11 +4,13 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Button;
 import android.view.View;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,12 +19,12 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity2 extends AppCompatActivity{
+
+public class EventActivity extends AppCompatActivity {
 
     //Link to database
+    public static final String URL_GET_ALL = "http://192.168.0.14/findyourspot/GetEvent.php";
 
-
-    public static final String URL_GET_ALL = "http://192.168.0.14/findyourspot/GetActivities.php";
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
@@ -38,32 +40,24 @@ public class MainActivity2 extends AppCompatActivity{
     private Button ACTIVITIES;
     private Button EVENT;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_event);
         listView = (ListView) findViewById(R.id.listView);
 
         //listView.setOnItemClickListener(this);
         getJSON();
 
-        this.MAP = (Button) findViewById(R.id.CARTEACT);
-        this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
-        this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
+        this.MAP = (Button) findViewById(R.id.CARTEEV);
+        this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESEV);
+        this.EVENT = (Button) findViewById(R.id.EVENEMENTEV);
 
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
-
-        EVENT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), EventActivity.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -77,8 +71,16 @@ public class MainActivity2 extends AppCompatActivity{
                 finish();
             }
         });
-    }
 
+        EVENT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), EventActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+    }
     private void showEmployee(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
@@ -92,7 +94,7 @@ public class MainActivity2 extends AppCompatActivity{
                 String nameactivity = jo.getString(TAG_NAME);
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
-      //          String lienimg = jo.getString(TAG_IMG);
+                //          String lienimg = jo.getString(TAG_IMG);
 
                 HashMap<String,String> employees = new HashMap<>();
 
@@ -100,7 +102,7 @@ public class MainActivity2 extends AppCompatActivity{
                 employees.put(TAG_NAME,nameactivity);
                 employees.put(TAG_LOC,location);
                 employees.put(TAG_DES,description);
-        //        employees.put(TAG_IMG,lienimg);
+                //        employees.put(TAG_IMG,lienimg);
 
                 list.add(employees);
             }
@@ -110,21 +112,21 @@ public class MainActivity2 extends AppCompatActivity{
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                MainActivity2.this, list, R.layout.list_item,
+                EventActivity.this, list, R.layout.list_item_event,
                 new String[]{
                         TAG_ID,
                         TAG_NAME,
                         TAG_LOC,
                         TAG_DES,
-          //              TAG_IMG
-                          },
+                        //              TAG_IMG
+                },
                 new int[]{
                         R.id.id,
                         R.id.nameactivity,
                         R.id.location,
                         R.id.description,
-            //            R.id.lienimg
-                        });
+                        //            R.id.lienimg
+                });
 
         listView.setAdapter(adapter);
     }
@@ -136,7 +138,7 @@ public class MainActivity2 extends AppCompatActivity{
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MainActivity2.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(EventActivity.this,"Fetching Data","Wait...",false,false);
             }
 
             @Override
@@ -157,4 +159,5 @@ public class MainActivity2 extends AppCompatActivity{
         GetJSON gj = new GetJSON();
         gj.execute();
     }
+
 }

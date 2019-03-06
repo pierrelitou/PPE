@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_weight="1"
-    tools:context=".MainActivity2">
-
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/listView"
@@ -21,7 +17,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/ACTIVITESACT"
+            android:id="@+id/ACTIVITESEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,7 +25,7 @@
             android:text="ACTIVITES" />
 
         <Button
-            android:id="@+id/CARTEACT"
+            android:id="@+id/CARTEEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -37,7 +33,7 @@
             android:text="MAP" />
 
         <Button
-            android:id="@+id/EVENEMENTACT"
+            android:id="@+id/EVENEMENTEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -46,6 +42,5 @@
 
     </LinearLayout>
 
+
 </LinearLayout>
-
-
