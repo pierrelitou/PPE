@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
     android:orientation="vertical">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        tools:context=".MapsActivity" />
+        android:layout_height="173dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"></ListView>
+
+    <ImageView
+        android:id="@+id/photoprofil"
+        android:layout_width="194dp"
+        android:layout_height="248dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+
+        android:src="@drawable/ic_launcher2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
+
+
         <Button
-            android:id="@+id/ACTIVITES"
+            android:id="@+id/ACTIVITESME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,7 +42,7 @@
             android:text="ACTIVITES" />
 
         <Button
-            android:id="@+id/CARTE"
+            android:id="@+id/CARTEME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -37,7 +50,7 @@
             android:text="MAP" />
 
         <Button
-            android:id="@+id/EVENEMENT"
+            android:id="@+id/EVENEMENTME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,12 +58,14 @@
             android:text="EVENT" />
 
         <Button
-            android:id="@+id/MEMAP"
+            android:id="@+id/MEME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_light"
-            android:text="Me" />
+            android:text="ME" />
 
     </LinearLayout>
+
+
 </LinearLayout>

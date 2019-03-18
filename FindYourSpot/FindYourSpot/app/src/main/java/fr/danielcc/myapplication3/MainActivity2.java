@@ -1,9 +1,12 @@
 package fr.danielcc.myapplication3;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,9 +30,10 @@ public class MainActivity2 extends AppCompatActivity{
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
     public static final String TAG_NAME = "nameactivity";
+    public static final String TAG_PROPOSEBY = "proposeby";
     public static final String TAG_LOC = "location";
     public static final String TAG_DES = "description";
-    //public static final String TAG_IMG = "lienimg";
+    public static final String TAG_IMG = "lienimg";
 
     private ListView listView;
     private String JSON_STRING;
@@ -37,6 +41,9 @@ public class MainActivity2 extends AppCompatActivity{
     private Button MAP;
     private Button ACTIVITIES;
     private Button EVENT;
+    private Button ME;
+
+    public ImageView imageactivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class MainActivity2 extends AppCompatActivity{
         this.MAP = (Button) findViewById(R.id.CARTEACT);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
         this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
+        this.ME = (Button) findViewById(R.id.MEACT);
 
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +85,15 @@ public class MainActivity2 extends AppCompatActivity{
                 finish();
             }
         });
+
+        ME.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), MEActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
     }
 
     private void showEmployee(){
@@ -90,17 +107,31 @@ public class MainActivity2 extends AppCompatActivity{
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(TAG_ID);
                 String nameactivity = jo.getString(TAG_NAME);
+                String proposeby = jo.getString(TAG_PROPOSEBY);
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
-      //          String lienimg = jo.getString(TAG_IMG);
-
+                String lienimg = jo.getString(TAG_IMG);
+                imageactivity=(ImageView) findViewById(R.id.lienimg);
+                //String linkimage="@Drawable/"+lienimg;
+                int idimage = MainActivity2.this.getResources().getIdentifier("drawable/capture","drawable",MainActivity2.this.getPackageName());
+                if(idimage==0){
+                    lienimg="erreur";
+                }
+                else {
+                    lienimg=Integer.toString(idimage);
+                    //imageactivity.setImageResource(R.drawable.ic_launcher2);
+                    //imageactivity.setBackgroundResource(R.drawable.ic_launcher2);
+                    //imageactivity.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher2));
+                }
+                //imageactivity.setImageResource(idimage);
                 HashMap<String,String> employees = new HashMap<>();
 
                 employees.put(TAG_ID,id);
                 employees.put(TAG_NAME,nameactivity);
+                employees.put(TAG_PROPOSEBY,proposeby);
                 employees.put(TAG_LOC,location);
                 employees.put(TAG_DES,description);
-        //        employees.put(TAG_IMG,lienimg);
+                employees.put(TAG_IMG,lienimg);
 
                 list.add(employees);
             }
@@ -114,16 +145,20 @@ public class MainActivity2 extends AppCompatActivity{
                 new String[]{
                         TAG_ID,
                         TAG_NAME,
+                        TAG_PROPOSEBY,
+                        TAG_IMG,
                         TAG_LOC,
-                        TAG_DES,
-          //              TAG_IMG
+                        TAG_DES
+
                           },
                 new int[]{
                         R.id.id,
                         R.id.nameactivity,
+                        R.id.proposeby,
+                        R.id.testbdd,
                         R.id.location,
-                        R.id.description,
-            //            R.id.lienimg
+                        R.id.description
+
                         });
 
         listView.setAdapter(adapter);
