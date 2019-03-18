@@ -3,7 +3,7 @@
 	require_once('dbConnect.php');
 	
 	//Creating sql query
-	$sql = "SELECT * FROM `activity` WHERE EVENT=0";
+	$sql = "SELECT Lat,Lng FROM `activity`";
 	//getting result 
 	$r = mysqli_query($con,$sql);
 	
@@ -15,14 +15,8 @@
 		
 		//Pushing name and id in the blank array created 
 		array_push($result,array(
-			"id"=>$row['id'],
-			"nameactivity"=>$row['nameactivity'],
-			"location"=>$row['location'],
-			"description"=>$row['description'],
-			"dateevent"=>$row['dateevent'],
-			"proposeby"=>$row['proposeby'],
-			"localproposer"=>$row['localproposer'],
-			"lienimg"=>$row['lienimg']
+			"Lat"=>$row['Lat'],
+			"Lng"=>$row['Lng']
 		));
 	}
 	
