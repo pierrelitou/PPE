@@ -15,16 +15,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> 71e65c85b4b2b09985d31b3ce5ba3934350fbde0
+
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
