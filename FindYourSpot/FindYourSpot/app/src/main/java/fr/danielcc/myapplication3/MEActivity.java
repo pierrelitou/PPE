@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class MEActivity extends AppCompatActivity{
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.0.14/findyourspot/GetMe.php";
+    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetMe.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";

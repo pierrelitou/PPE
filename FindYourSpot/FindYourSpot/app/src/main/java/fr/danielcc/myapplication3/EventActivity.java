@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class EventActivity extends AppCompatActivity {
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.0.14/findyourspot/GetEvent.php";
+    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetEvent.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";

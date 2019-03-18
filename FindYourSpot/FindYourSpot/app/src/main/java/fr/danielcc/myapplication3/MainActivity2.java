@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class MainActivity2 extends AppCompatActivity{
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.0.14/findyourspot/GetActivities.php";
+    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetActivities.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
@@ -53,6 +53,8 @@ public class MainActivity2 extends AppCompatActivity{
         //listView.setOnItemClickListener(this);
         getJSON();
 
+        //this.imageactivity=(ImageView) findViewById(R.id.lienimg);
+        //imageactivity.setImageResource(R.drawable.capture);
         this.MAP = (Button) findViewById(R.id.CARTEACT);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
         this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
@@ -93,6 +95,8 @@ public class MainActivity2 extends AppCompatActivity{
                 finish();
             }
         });
+
+
     }
 
     private void showEmployee(){
@@ -110,7 +114,6 @@ public class MainActivity2 extends AppCompatActivity{
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
                 String lienimg = jo.getString(TAG_IMG);
-                imageactivity=(ImageView) findViewById(R.id.lienimg);
                 //String linkimage="@Drawable/"+lienimg;
                 int idimage = MainActivity2.this.getResources().getIdentifier("drawable/capture","drawable",MainActivity2.this.getPackageName());
                 if(idimage==0){
@@ -121,6 +124,7 @@ public class MainActivity2 extends AppCompatActivity{
                     //imageactivity.setImageResource(R.drawable.ic_launcher2);
                     //imageactivity.setBackgroundResource(R.drawable.ic_launcher2);
                     //imageactivity.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher2));
+                    //imageactivity.setImageResource(R.drawable.capture);
                 }
                 //imageactivity.setImageResource(idimage);
                 HashMap<String,String> employees = new HashMap<>();
