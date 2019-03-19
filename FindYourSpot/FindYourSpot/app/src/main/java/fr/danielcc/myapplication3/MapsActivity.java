@@ -32,6 +32,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_LAT = "Lat";
     public static final String TAG_LNG = "Lng";
+    public static final String TAG_TITLE = "";
+    public static final String TAG_DESC = "";
+    public static final String TAG_DATE = "";
 
     private String JSON_STRING;
 
@@ -108,7 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private ArrayList showEmployee() {
         JSONObject jsonObject = null;
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, activity>> list = new ArrayList<HashMap<String, activity>>();
         try {
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray result = jsonObject.getJSONArray(TAG_JSON_ARRAY);
@@ -179,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         coor.add(new LatLng(28.4,79.7));
         // Add a marker in Sydney and move the camera
         for(int i=0; i<coor.size();i++){
-            googleMap.addMarker(new MarkerOptions().position(coor.get(i)).title("Marker "+i));
+            googleMap.addMarker(new MarkerOptions().position(coor.get(i)).title("Marker "+i).snippet("ceci est un test"));
             //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28,88)));
         }
         if (coor.size()!=4) System.err.print("size of coor  "  + coor.size());

@@ -6,7 +6,7 @@ pseudo VARCHAR(30),mdp VARCHAR(255),firsname VARCHAR(30),
 lastname VARCHAR(255), dateofbirth DATE, sex CHAR(1),userloc BOOLEAN);
 
 CREATE TABLE Activity(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
- nameactivity VARCHAR(255),location VARCHAR(255),description TEXT,dateevent DATETIME,
+ nameactivity VARCHAR(255),location VARCHAR(255),descriptions TEXT,lat FLOAT, lgt FLOAT, dateevent DATETIME,
  proposeby VARCHAR(255) REFERENCES Users(mail) ON DELETE CASCADE ON UPDATE CASCADE,
  localproposer BOOLEAN);
 
@@ -17,12 +17,12 @@ CREATE TABLE Rate(idactivity INT, mailuser VARCHAR(255),note FLOAT,
 FOREIGN KEY(mailuser) REFERENCES Users(mail) ON DELETE CASCADE ON UPDATE CASCADE, 
 PRIMARY KEY (idactivity, mailuser));
 
-CREATE TABLE Userpreference(mailuser VARCHAR(255),idpref VARCHAR(30),importance FLOAT,
+CREATE TABLE Userpreference(mailuser VARCHAR(255),idpref INT,importance FLOAT,
 FOREIGN KEY(mailuser) REFERENCES Users(mail) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(idpref) REFERENCES Preference(namep) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY(mailuser, idpref));
 
-CREATE TABLE Typeactivity(idactivity INT,idpref VARCHAR(30),
+CREATE TABLE Typeactivity(idactivity INT,idpref INT,
 FOREIGN KEY(idactivity) REFERENCES Activity(id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(idpref) REFERENCES Preference(namep) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY(idactivity,idpref));

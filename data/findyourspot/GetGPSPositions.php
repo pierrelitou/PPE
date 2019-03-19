@@ -3,7 +3,7 @@
 	require_once('dbConnect.php');
 	
 	//Creating sql query
-	$sql = "SELECT Lat,Lng FROM `activity`";
+	$sql = "SELECT Lat, Lng,  FROM `activity`";
 	//getting result 
 	$r = mysqli_query($con,$sql);
 	
