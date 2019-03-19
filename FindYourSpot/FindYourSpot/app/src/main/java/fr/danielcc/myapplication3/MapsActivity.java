@@ -172,13 +172,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        ArrayList<LatLng> coor = new ArrayList<LatLng>();
-        coor.add(new LatLng(28,88));
-        coor.add(new LatLng(28.1,88.2));
-        coor.add(new LatLng(28.3,79.9));
-        coor.add(new LatLng(28.4,79.7));
+
+        ArrayList<activity> act = showEmployee();
         // Add a marker in Sydney and move the camera
-        for(int i=0; i<coor.size();i++){
+        for(int i=0; i<act.size();i++){
             googleMap.addMarker(new MarkerOptions().position(coor.get(i)).title("Marker "+i).snippet("ceci est un test"));
             //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28,88)));
         }
