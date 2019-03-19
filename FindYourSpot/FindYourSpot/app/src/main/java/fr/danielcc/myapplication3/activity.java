@@ -1,57 +1,58 @@
 package fr.danielcc.myapplication3;
 
 public class activity {
-    private String nameActivity;
-    private String location;
-    private String description;
-    private int lgt;
-    private int lat;
 
-    public activity(String nameActivity, String location, String description, int lgt, int lat) {
-        this.nameActivity = nameActivity;
-        this.location = location;
-        this.description = description;
-        this.lgt = lgt;
+    private float lat;
+    private float lng;
+    private String title;
+    private String desc;
+    private String date;
+
+    public activity(float lat, float lng, String title, String desc, String date) {
         this.lat = lat;
+        this.lng = lng;
+        this.title = title;
+        this.desc = desc;
+        this.date = date;
     }
 
-    public String getNameActivity() {
-        return nameActivity;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getLgt() {
-        return lgt;
-    }
-
-    public int getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setNameActivity(String nameActivity) {
-        this.nameActivity = nameActivity;
+    public float getLng() {
+        return lng;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setLgt(int lgt) {
-        this.lgt = lgt;
+    public String getDate() {
+        return date;
     }
 
-    public void setLat(int lat) {
+    public void setLat(float lat) {
         this.lat = lat;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

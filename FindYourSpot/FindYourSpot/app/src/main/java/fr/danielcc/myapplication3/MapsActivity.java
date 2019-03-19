@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.lang.Float;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -32,9 +32,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_LAT = "Lat";
     public static final String TAG_LNG = "Lng";
-    public static final String TAG_TITLE = "";
-    public static final String TAG_DESC = "";
-    public static final String TAG_DATE = "";
+    public static final String TAG_TITLE = "nameactivity";
+    public static final String TAG_DESC = "description";
+    public static final String TAG_DATE = "dateevent";
 
     private String JSON_STRING;
 
@@ -109,9 +109,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    private ArrayList showEmployee() {
+    private ArrayList<activity> showEmployee() {
         JSONObject jsonObject = null;
-        ArrayList<HashMap<String, activity>> list = new ArrayList<HashMap<String, activity>>();
+        ArrayList< activity> list = new ArrayList< activity>();
         try {
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray result = jsonObject.getJSONArray(TAG_JSON_ARRAY);
@@ -120,14 +120,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 JSONObject jo = result.getJSONObject(i);
                 String Lat = jo.getString(TAG_LAT);
                 String Lng = jo.getString(TAG_LNG);
+                String nameactivity = jo.getString(TAG_TITLE);
+                String description = jo.getString(TAG_DESC);
+                String dateevent = jo.getString(TAG_DATE);
                 //          String lienimg = jo.getString(TAG_IMG);
-
-                HashMap<String, String> employees = new HashMap<>();
-
-                employees.put(TAG_LAT, Lat);
-                employees.put(TAG_LNG, Lng);
-
-                list.add(employees);
+                list.add(new activity(Float.parseFloat(Lat),Float.parseFloat(Lng),nameactivity,description,dateevent));
             }
 
         } catch (JSONException e) {
