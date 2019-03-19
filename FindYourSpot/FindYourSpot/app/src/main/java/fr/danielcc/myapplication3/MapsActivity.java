@@ -26,7 +26,7 @@ import java.util.HashMap;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetGPSPositions.php";
+    public static final String URL_GET_ALL = "http://192.168.43.127/findyourspot/GetGPSPositions.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
