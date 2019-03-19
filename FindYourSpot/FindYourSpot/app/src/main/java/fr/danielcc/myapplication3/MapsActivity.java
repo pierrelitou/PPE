@@ -1,7 +1,11 @@
 package fr.danielcc.myapplication3;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +15,7 @@ import android.widget.Button;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -19,14 +24,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.lang.Float;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.192/findyourspot/GetGPSPositions.php";
+    public static final String URL_GET_ALL = "http://192.168.43.82/htdocs/PPE/data/findyourspot/GetGPSPositions.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
@@ -43,6 +47,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button EVENT;
     private Button MAP;
     private Button ME;
+
+    public void alertGPS(){
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +141,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private ArrayList<activity> showEmployee() {
         JSONObject jsonObject = null;
-        ArrayList< activity> list = new ArrayList< activity>();
+        ArrayList< activity> list = new ArrayList< >();
         try {
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray result = jsonObject.getJSONArray(TAG_JSON_ARRAY);
@@ -171,15 +201,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
          */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-
-        ArrayList<activity> act = showEmployee();
+        //ArrayList<activity> act = showEmployee();
+        alertGPS();
+        MyLocationListener position = new MyLocationListener();
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(position.getLat(),position.getLgt())).title("your position").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+        ArrayList<activity> act = new ArrayList<>();
+        act.add(new activity(48.888f,2.39216f,"activité de batard","ça va être cool tkt","00-00-00"));
         // Add a marker in Sydney and move the camera
         for(int i=0; i<act.size();i++){
-            googleMap.addMarker(new MarkerOptions().position(coor.get(i)).title("Marker "+i).snippet("ceci est un test"));
-            //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28,88)));
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(),act.get(i).getLng())).title(act.get(i).getTitle()).snippet("date : "+act.get(i).getDate()+"\nDescription : "+act.get(i).getDesc()));
+
         }
-        if (coor.size()!=4) System.err.print("size of coor  "  + coor.size());
 
     }
 }
