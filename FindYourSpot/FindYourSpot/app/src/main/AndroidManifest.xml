@@ -45,6 +45,7 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".MEActivity" />
         <activity android:name=".ViewActivities" />
+        <activity android:name=".ViewEvents" />
 
     </application>
 

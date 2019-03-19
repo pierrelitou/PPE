@@ -1,31 +1,18 @@
 package fr.danielcc.myapplication3;
 
-
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URI;
-import java.util.HashMap;
-
-
-public class ViewActivities extends AppCompatActivity{
-
+public class ViewEvents extends AppCompatActivity {
     private EditText editTextId;
     private TextView editTextName;
     private TextView editTextLocation;
@@ -68,13 +55,13 @@ public class ViewActivities extends AppCompatActivity{
     }
 
     private void getEmployee(){
-        class GetEmployee extends AsyncTask<Void,Void,String>{
+        class GetEmployee extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewActivities.this,"Fetching...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewEvents.this,"Fetching...","Wait...",false,false);
             }
 
             @Override
@@ -224,5 +211,5 @@ public class ViewActivities extends AppCompatActivity{
             //confirmDeleteEmployee();
         }
     }*/
-}
 
+}

@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class MainActivity2 extends AppCompatActivity implements ListView.OnItemClickListener{
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.127/findyourspot/GetActivities.php";
+    public static final String URL_GET_ALL = "http://192.168.43.146/findyourspot/GetActivities.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
