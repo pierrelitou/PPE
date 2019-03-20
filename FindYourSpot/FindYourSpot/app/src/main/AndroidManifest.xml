@@ -45,6 +45,10 @@
 
 
         <activity android:name=".Register" />
+        <activity android:name=".ViewActivities" />
+        <activity android:name=".ViewEvents" />
+
+
         <activity android:name=".Server" />
         <activity android:name=".Login" >
             <intent-filter>
