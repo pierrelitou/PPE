@@ -20,10 +20,10 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity2 extends AppCompatActivity implements ListView.OnItemClickListener{
+public class MainActivity2 extends AppCompatActivity{
 
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.146/findyourspot/GetActivities.php";
+    public static final String URL_GET_ALL = Server.URL + "GetActivities.php";
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
@@ -49,7 +49,8 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(this);
+
+        //listView.setOnItemClickListener(this);
         getJSON();
 
         //this.imageactivity=(ImageView) findViewById(R.id.lienimg);
@@ -193,20 +194,5 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
         }
         GetJSON gj = new GetJSON();
         gj.execute();
-
-        }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        /*Intent otherActivity = new Intent(getApplicationContext(), ViewActivities.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(TAG_ID).toString();
-        otherActivity.putExtra("act_id",empId);
-        startActivity(otherActivity);*/
-        Intent intent = new Intent(this, ViewActivities.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(TAG_ID).toString();
-        intent.putExtra("act_id",empId);
-        startActivity(intent);
     }
 }

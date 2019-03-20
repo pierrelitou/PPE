@@ -1,6 +1,8 @@
 package fr.danielcc.myapplication3;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +22,7 @@ import java.util.HashMap;
 
 public class MEActivity extends AppCompatActivity{
     //Link to database
-    public static final String URL_GET_ALL = "http://192.168.43.127/findyourspot/GetMe.php";
+
 
     //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
@@ -40,23 +42,25 @@ public class MEActivity extends AppCompatActivity{
     private Button ACTIVITIES;
     private Button EVENT;
     private Button ME;
+    private Button logout;
+
+    SharedPreferences sharedpreferences;
+
+    public static final String TAG_ID = "id";
+    public static final String TAG_USERNAME = "username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me);
-        //Pour mettre la photo de profil de l'utilisateur
-        //photoprofil=(ImageView) findViewById(R.id.photoprofil);
-        //photoprofil.setImageResource(R.drawable.photoprofil);
-        listView = (ListView) findViewById(R.id.listView);
 
-        //listView.setOnItemClickListener(this);
-        getJSON();
+        listView = (ListView) findViewById(R.id.listView);
 
         this.MAP = (Button) findViewById(R.id.CARTEME);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESME);
         this.EVENT = (Button) findViewById(R.id.EVENEMENTME);
         this.ME = (Button) findViewById(R.id.MEME);
+        this.logout = (Button) findViewById(R.id.logout);
 
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,37 +97,45 @@ public class MEActivity extends AppCompatActivity{
                 finish();
             }
         });
+
+        sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), Login.class);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean(Login.session_status, false);
+                editor.putString(TAG_ID, null);
+                editor.putString(TAG_USERNAME, null);
+                Server.pseudo="";
+                Server.dateofbirth="";
+                Server.lastname="";
+                Server.firstname="";
+                editor.commit();
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
+        showEmployee();
     }
 
     private void showEmployee(){
-        JSONObject jsonObject = null;
-        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
-        try {
-            jsonObject = new JSONObject(JSON_STRING);
-            JSONArray result = jsonObject.getJSONArray(TAG_JSON_ARRAY);
 
-            for(int i = 0; i<result.length(); i++){
-                JSONObject jo = result.getJSONObject(i);
-                String firstname = jo.getString(TAG_firstname);
-                String lastname = jo.getString(TAG_lastname);
-                String dateofbirth = jo.getString(TAG_dateofbirth);
-                String pseudo = jo.getString(TAG_pseudo);
-                //          String lienimg = jo.getString(TAG_IMG);
+        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
 
                 HashMap<String,String> employees = new HashMap<>();
 
-                employees.put(TAG_firstname,firstname);
-                employees.put(TAG_lastname,lastname);
-                employees.put(TAG_dateofbirth,dateofbirth);
-                employees.put(TAG_pseudo,pseudo);
-                //        employees.put(TAG_IMG,lienimg);
+                employees.put(TAG_firstname,Server.firstname);
+                employees.put(TAG_lastname,Server.lastname);
+                employees.put(TAG_dateofbirth,Server.dateofbirth);
+                employees.put(TAG_pseudo,Server.pseudo);
 
                 list.add(employees);
-            }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+
 
         ListAdapter adapter = new SimpleAdapter(
                 MEActivity.this, list, R.layout.list_item_me,
@@ -132,46 +144,17 @@ public class MEActivity extends AppCompatActivity{
                         TAG_lastname,
                         TAG_dateofbirth,
                         TAG_pseudo,
-                        //              TAG_IMG
                 },
                 new int[]{
                         R.id.firstname,
                         R.id.lastname,
                         R.id.dateofbirth,
                         R.id.pseudo,
-                        //            R.id.lienimg
                 });
 
         listView.setAdapter(adapter);
     }
 
-    private void getJSON(){
-        class GetJSON extends AsyncTask<Void,Void,String> {
 
-            ProgressDialog loading;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(MEActivity.this,"Fetching Data","Wait...",false,false);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                JSON_STRING = s;
-                showEmployee();
-            }
-
-            @Override
-            protected String doInBackground(Void... params) {
-                RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(URL_GET_ALL);
-                return s;
-            }
-        }
-        GetJSON gj = new GetJSON();
-        gj.execute();
-    }
 }
 
