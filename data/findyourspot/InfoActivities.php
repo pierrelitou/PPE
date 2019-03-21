@@ -15,8 +15,6 @@
 			"description"=>$row['description'],
 			"location"=>$row['location']
 			
-			/*"harga_barang"=>$row['harga_barang'],
-			"jenis_barang"=>$row['jenis_barang']*/
 		));
 
 	echo json_encode(array('result'=>$result));

@@ -8,4 +8,5 @@ public class Server {
     public static String lastname="";
     public static String dateofbirth="";
     public static String pseudo="";
+    public static String photoprofil="";
 }

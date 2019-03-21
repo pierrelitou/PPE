@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
     public String TAG_LASTNAME="lastname";
     public String TAG_PSEUDO="pseudo";
     public String TAG_DATEOFBIRTH="dateofbirth";
+    public String TAG_PHOTOPROFIL="photoprofil";
 
     String tag_json_obj = "json_obj_req";
 
@@ -163,6 +164,7 @@ public class Login extends AppCompatActivity {
                         String lastname=jObj.getString(TAG_LASTNAME);
                         String dateofbirth=jObj.getString(TAG_DATEOFBIRTH);
                         String pseudo=jObj.getString(TAG_PSEUDO);
+                        String photoprofil=jObj.getString(TAG_PHOTOPROFIL);
 
                         Log.e("Successfully Login!", jObj.toString());
 
@@ -180,6 +182,7 @@ public class Login extends AppCompatActivity {
                         Server.lastname=lastname;
                         Server.dateofbirth=dateofbirth;
                         Server.pseudo=pseudo;
+                        Server.photoprofil=photoprofil;
 
                         editor.commit();
 

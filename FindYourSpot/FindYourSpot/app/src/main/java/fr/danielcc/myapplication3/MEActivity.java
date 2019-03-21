@@ -30,8 +30,6 @@ public class MEActivity extends AppCompatActivity{
     public static final String TAG_lastname = "lastname";
     public static final String TAG_dateofbirth = "dateofbirth";
     public static final String TAG_pseudo = "pseudo";
-    //public static final String TAG_IMG = "lienimg";
-
 
     //public ImageView photoprofil;
 
@@ -44,6 +42,7 @@ public class MEActivity extends AppCompatActivity{
     private Button ME;
     private Button logout;
 
+    private ImageView photo;
     SharedPreferences sharedpreferences;
 
     public static final String TAG_ID = "id";
@@ -55,6 +54,16 @@ public class MEActivity extends AppCompatActivity{
         setContentView(R.layout.activity_me);
 
         listView = (ListView) findViewById(R.id.listView);
+        photo = (ImageView) findViewById(R.id.photoprofil);
+
+        //String resource ="R.drawable." + Server.photoprofil;
+        String pack = getPackageName();
+        pack = pack + ":drawable/";
+        pack = pack + Server.photoprofil;
+        int id = getResources().getIdentifier(pack,null,null);
+        photo.setImageResource(id);
+        //photo.setImageResource(R.drawable.daniel);
+        //photo.setImageDrawable(drawable.daniel);
 
         this.MAP = (Button) findViewById(R.id.CARTEME);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESME);
@@ -112,6 +121,7 @@ public class MEActivity extends AppCompatActivity{
                 Server.dateofbirth="";
                 Server.lastname="";
                 Server.firstname="";
+                Server.photoprofil="";
                 editor.commit();
                 startActivity(otherActivity);
                 finish();

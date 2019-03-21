@@ -30,6 +30,7 @@
 		$response->dateofbirth = $row['dateofbirth'];
 		$response->firstname = $row['firstname'];
 		$response->lastname = $row['lastname'];
+		$response->photoprofil = $row['photoprofil'];
 		
 	 	die(json_encode($response));
 		

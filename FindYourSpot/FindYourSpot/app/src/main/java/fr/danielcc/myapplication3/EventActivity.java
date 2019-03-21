@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class EventActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     //Link to database
     public static final String URL_GET_ALL = Server.URL + "GetEvent.php";
@@ -48,7 +49,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         listView = (ListView) findViewById(R.id.listView);
 
-        //listView.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
         getJSON();
 
         this.MAP = (Button) findViewById(R.id.CARTEEV);
@@ -169,6 +170,20 @@ public class EventActivity extends AppCompatActivity {
         }
         GetJSON gj = new GetJSON();
         gj.execute();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        /*Intent otherActivity = new Intent(getApplicationContext(), ViewActivities.class);
+        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
+        String empId = map.get(TAG_ID).toString();
+        otherActivity.putExtra("act_id",empId);
+        startActivity(otherActivity);*/
+        Intent intent = new Intent(this, ViewEvents.class);
+        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
+        String empId = map.get(TAG_ID).toString();
+        intent.putExtra("act_id",empId);
+        startActivity(intent);
     }
 
 }
