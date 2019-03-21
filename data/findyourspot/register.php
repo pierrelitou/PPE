@@ -27,10 +27,10 @@
 	 	die(json_encode($response));
 	} else {
 		 if (!empty($username) && $password == $confirm_password){
-		 	$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM users WHERE mail='".$username."'"));
+		 	$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM users WHERE username='".$username."'"));
 
 		 	if ($num_rows == 0){
-		 		$query = mysqli_query($con, "INSERT INTO users (mail, password) VALUES('".$username."','".$password."')");
+		 		$query = mysqli_query($con, "INSERT INTO users (username, password) VALUES('".$username."','".$password."')");
 
 		 		if ($query){
 		 			$response = new usr();
