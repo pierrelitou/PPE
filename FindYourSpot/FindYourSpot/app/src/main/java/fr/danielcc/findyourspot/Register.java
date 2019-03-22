@@ -1,4 +1,4 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,7 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import fr.danielcc.myapplication3.app.AppController;
+import fr.danielcc.findyourspot.app.AppController;
 
 import org.json.JSONException;
 import org.json.JSONObject;

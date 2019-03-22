@@ -1,4 +1,4 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -16,7 +16,7 @@ import android.view.View;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,13 +26,13 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
     //Link to database
     public static final String URL_GET_ALL = Server.URL + "GetEvent.php";
 
-    //JSON Tagsvity
+    //JSON TAGs
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
     public static final String TAG_NAME = "nameactivity";
     public static final String TAG_LOC = "location";
     public static final String TAG_DES = "description";
-    //public static final String TAG_IMG = "lienimg";
+
 
     private ListView listView;
     private String JSON_STRING;
@@ -47,9 +47,11 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        listView = (ListView) findViewById(R.id.listView);
 
+        listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
+
+        //recupération des paquets JSON
         getJSON();
 
         this.MAP = (Button) findViewById(R.id.CARTEEV);
@@ -69,7 +71,7 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
         ACTIVITIES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -93,7 +95,11 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
             }
         });
     }
-    private void showEmployee(){
+
+    /**
+     *
+     */
+    private void DisplayData(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try {
@@ -106,17 +112,15 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
                 String nameactivity = jo.getString(TAG_NAME);
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
-                //          String lienimg = jo.getString(TAG_IMG);
 
-                HashMap<String,String> employees = new HashMap<>();
+                HashMap<String,String> dataevent = new HashMap<>();
 
-                employees.put(TAG_ID,id);
-                employees.put(TAG_NAME,nameactivity);
-                employees.put(TAG_LOC,location);
-                employees.put(TAG_DES,description);
-                //        employees.put(TAG_IMG,lienimg);
+                dataevent.put(TAG_ID,id);
+                dataevent.put(TAG_NAME,nameactivity);
+                dataevent.put(TAG_LOC,location);
+                dataevent.put(TAG_DES,description);
 
-                list.add(employees);
+                list.add(dataevent);
             }
 
         } catch (JSONException e) {
@@ -130,14 +134,12 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
                         TAG_NAME,
                         TAG_LOC,
                         TAG_DES,
-                        //              TAG_IMG
                 },
                 new int[]{
                         R.id.id,
                         R.id.nameactivity,
                         R.id.location,
                         R.id.description,
-                        //            R.id.lienimg
                 });
 
         listView.setAdapter(adapter);
@@ -158,7 +160,7 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
                 super.onPostExecute(s);
                 loading.dismiss();
                 JSON_STRING = s;
-                showEmployee();
+                DisplayData();
             }
 
             @Override
@@ -174,15 +176,11 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        /*Intent otherActivity = new Intent(getApplicationContext(), ViewActivities.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(TAG_ID).toString();
-        otherActivity.putExtra("act_id",empId);
-        startActivity(otherActivity);*/
+
         Intent intent = new Intent(this, ViewEvents.class);
         HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
         String empId = map.get(TAG_ID).toString();
-        intent.putExtra("act_id",empId);
+        intent.putExtra("event_id",empId);
         startActivity(intent);
     }
 

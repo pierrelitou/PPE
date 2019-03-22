@@ -1,4 +1,4 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,22 +14,15 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- * Created by Nava on 6/6/2016.
- */
 
 public class RequestHandler {
 
-    // Methode httpPostRequest
-    // Metode ini mengambil dua argumen
-    // Argumen Pertama adalah URL dari script yang kami akan mengirimkan permintaan
-    // Lainnya adalah HashMap dengan nilai pasangan nama yang berisi data yang akan dikirim dengan permintaan
+    // Method httpPostRequest
     public String sendPostRequest(String requestURL,
                                   HashMap<String, String> postDataParams) {
         //Creating a URL
         URL url;
 
-        // Objek StringBuilder untuk review menyimpan Pesan diambil Dari Server
         StringBuilder sb = new StringBuilder();
         try {
             //Initializing Url

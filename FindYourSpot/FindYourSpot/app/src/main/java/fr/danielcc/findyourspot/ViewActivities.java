@@ -1,72 +1,56 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
+
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ViewEvents extends AppCompatActivity {
+
+public class ViewActivities extends AppCompatActivity{
+
     private EditText editTextId;
     private TextView editTextName;
     private TextView editTextLocation;
     private TextView editTextDescription;
-
-    private Button buttonUpdate;
-    //private Button buttonDelete;
 
     private String id;
 
     public static final String TAG_NAME = "nameactivity";
     public static final String TAG_DES = "description";
     public static final String TAG_LOC = "location";
-    public static final String TAG_ID = "iduser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_view);
+        setContentView(R.layout.activity_view);
 
         Intent intent = getIntent();
-        //
+
         id = intent.getStringExtra("act_id");
-        //editTextId = (EditText) findViewById(R.id.editTextId);
         editTextName = (TextView) findViewById(R.id.editTextName);
         editTextLocation = (TextView) findViewById(R.id.editTextLocation);
         editTextDescription = (TextView) findViewById(R.id.editTextDescription);
 
-        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
-        //buttonDelete = (Button) findViewById(R.id.buttonDelete);
-
-        //buttonUpdate.setOnClickListener(this);
-        //buttonDelete.setOnClickListener(this);
-
-        //editTextId.setText(id);
-
-
-        getEmployee();
-
+        getData();
 
     }
 
-    private void getEmployee(){
-        class GetEmployee extends AsyncTask<Void,Void,String> {
+    private void getData(){
+        class getData extends AsyncTask<Void,Void,String>{
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewEvents.this,"Fetching...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewActivities.this,"Fetching...","Wait...",false,false);
             }
 
             @Override
@@ -83,8 +67,8 @@ public class ViewEvents extends AppCompatActivity {
                 return s;
             }
         }
-        GetEmployee ge = new GetEmployee();
-        ge.execute();
+        getData gd = new getData();
+        gd.execute();
 
 
     }
@@ -101,11 +85,7 @@ public class ViewEvents extends AppCompatActivity {
 
             String location = c.getString(TAG_LOC);
 
-            /*String harga_barang = c.getString(Config.TAG_DESG);
-            String jenis_barang = c.getString(Config.TAG_SAL);*/
-
             editTextName.setText(nameactivity);
-            /*editTextDesg.setText(harga_barang);*/
             editTextDescription.setText(description);
             editTextLocation.setText(location);
 
@@ -113,36 +93,37 @@ public class ViewEvents extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+/*
     private void updateEmployee(){
-        final String idactivity = editTextName.getText().toString().trim();
-        final String iduser = editTextLocation.getText().toString().trim();
+        final String nama_barang = editTextName.getText().toString().trim();
+        final String harga_barang = editTextLocation.getText().toString().trim();
         final String jenis_barang = editTextDescription.getText().toString().trim();
-
-        class UpdateEmployee extends AsyncTask<Void,Void,String>{
+*/
+        /*class UpdateEmployee extends AsyncTask<Void,Void,String>{
             ProgressDialog loading;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewEvents.this,"Updating...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewActivities.this,"Updating...","Wait...",false,false);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(ViewEvents.this,s,Toast.LENGTH_LONG).show();
+                Toast.makeText(ViewActivities.this,s,Toast.LENGTH_LONG).show();
             }
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put("idactivity",id);
-                hashMap.put("iduser",Server.iduser);
+                hashMap.put(Config.KEY_EMP_ID,id);
+                hashMap.put(Config.KEY_EMP_NAME,nama_barang);
+                hashMap.put(Config.KEY_EMP_DESG,harga_barang);
+                hashMap.put(Config.KEY_EMP_SAL,jenis_barang);
 
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendPostRequest(Server.URL + "participate.php?idactivity=",id);
-
+                String s = rh.sendPostRequest(Config.URL_UPDATE_EMP,hashMap);
 
                 return s;
             }
@@ -152,7 +133,7 @@ public class ViewEvents extends AppCompatActivity {
 
         ue.execute();
     }
-/*
+
     private void deleteEmployee(){
         class DeleteEmployee extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
@@ -192,7 +173,7 @@ public class ViewEvents extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         deleteEmployee();
-                        startActivity(new Intent(ViewActivities.this,MainActivity2.class));
+                        startActivity(new Intent(ViewActivities.this,Activities.class));
                     }
                 });
         alertDialogBuilder.setNegativeButton("No",
@@ -215,5 +196,5 @@ public class ViewEvents extends AppCompatActivity {
             //confirmDeleteEmployee();
         }
     }*/
-
 }
+
