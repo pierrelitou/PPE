@@ -32,6 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_LAT = "Lat";
     public static final String TAG_LNG = "Lng";
+    public static final String TAG_TITLE = "nameactivity";
+    public static final String TAG_DESC = "description";
 
     private String JSON_STRING;
 
@@ -106,24 +108,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    private ArrayList showEmployee() {
+
+    private ArrayList<HashMap<String, String>> showEmployee() {
         JSONObject jsonObject = null;
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+        //ArrayList<Activity> list = new ArrayList<>();
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
         try {
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray result = jsonObject.getJSONArray(TAG_JSON_ARRAY);
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject jo = result.getJSONObject(i);
+
                 String Lat = jo.getString(TAG_LAT);
                 String Lng = jo.getString(TAG_LNG);
-                //          String lienimg = jo.getString(TAG_IMG);
+                String title = jo.getString(TAG_TITLE);
+                String desc = jo.getString(TAG_DESC);
+
 
                 HashMap<String, String> employees = new HashMap<>();
 
                 employees.put(TAG_LAT, Lat);
                 employees.put(TAG_LNG, Lng);
+                employees.put(TAG_TITLE,title);
+                employees.put(TAG_DESC,desc);
 
+                //list.add(new Activity(Float.parseFloat(jo.getString(TAG_LAT)),Float.parseFloat(jo.getString(TAG_LNG)),jo.getString(TAG_TITLE),jo.getString(TAG_DESC)));
                 list.add(employees);
             }
 
@@ -132,34 +142,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         return list;
     }
-        private void getJSON(){
-            class GetJSON extends AsyncTask<Void,Void,String> {
 
-                ProgressDialog loading;
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                    loading = ProgressDialog.show(MapsActivity.this,"Fetching Data","Wait...",false,false);
-                }
 
-                @Override
-                protected void onPostExecute(String s) {
-                    super.onPostExecute(s);
-                    loading.dismiss();
-                    JSON_STRING = s;
-                    showEmployee();
-                }
+    private void getJSON(){
+        class GetJSON extends AsyncTask<Void,Void,String> {
 
-                @Override
-                protected String doInBackground(Void... params) {
-                    RequestHandler rh = new RequestHandler();
-                    String s = rh.sendGetRequest(URL_GET_ALL);
-                    return s;
-                }
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(MapsActivity.this,"Fetching Data","Wait...",false,false);
             }
-            GetJSON gj = new GetJSON();
-            gj.execute();
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING = s;
+                showEmployee();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                RequestHandler rh = new RequestHandler();
+                String s = rh.sendGetRequest(URL_GET_ALL);
+                return s;
+            }
         }
+        GetJSON gj = new GetJSON();
+        gj.execute();
+    }
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
@@ -173,10 +185,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //ArrayList listpositions = showEmployee();
+        //ArrayList<Activity> act = showEmployee();
+        ArrayList<HashMap<String, String>> act = showEmployee();
+        for(int i = 0; i<act.size() ; i++){
+        //    mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(),act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(Float.parseFloat(act.get(i).get(TAG_LAT)),Float.parseFloat(act.get(i).get(TAG_LNG)))).title(act.get(i).get(TAG_TITLE)).snippet(act.get(i).get(TAG_DESC)));
+        }
 
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(10,10)).title("Marker in Sydney"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(10,10)));
 
         // Add a marker in Sydney and move the camera
 

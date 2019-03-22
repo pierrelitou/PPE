@@ -3,7 +3,7 @@
 	require_once('dbConnect.php');
 	
 	//Creating sql query
-	$sql = "SELECT Lat,Lng FROM `activity`";
+	$sql = "SELECT Lat, Lng, nameactivity, description FROM `activity`";
 	//getting result 
 	$r = mysqli_query($con,$sql);
 	
@@ -16,7 +16,9 @@
 		//Pushing name and id in the blank array created 
 		array_push($result,array(
 			"Lat"=>$row['Lat'],
-			"Lng"=>$row['Lng']
+			"Lng"=>$row['Lng'],
+			"nameactivity"=>$row['nameactivity'],
+			"description"=>$row['description']
 		));
 	}
 	
