@@ -1,6 +1,5 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +19,7 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity2 extends AppCompatActivity implements ListView.OnItemClickListener{
+public class Activities extends AppCompatActivity implements ListView.OnItemClickListener{
 
     //Link to database
     public static final String URL_GET_ALL = Server.URL + "GetActivities.php";
@@ -47,13 +46,11 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_activities);
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
         getJSON();
 
-        //this.imageactivity=(ImageView) findViewById(R.id.lienimg);
-        //imageactivity.setImageResource(R.drawable.capture);
         this.MAP = (Button) findViewById(R.id.CARTEACT);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
         this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
@@ -80,7 +77,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
         ACTIVITIES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -98,7 +95,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
 
     }
 
-    private void showEmployee(){
+    private void DisplayData(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try {
@@ -112,30 +109,16 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
                 String proposeby = jo.getString(TAG_PROPOSEBY);
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
-                String lienimg = jo.getString(TAG_IMG);
-                //String linkimage="@Drawable/"+lienimg;
-                int idimage = MainActivity2.this.getResources().getIdentifier("drawable/capture","drawable",MainActivity2.this.getPackageName());
-                if(idimage==0){
-                    lienimg="erreur";
-                }
-                else {
-                    lienimg=Integer.toString(idimage);
-                    //imageactivity.setImageResource(R.drawable.ic_launcher2);
-                    //imageactivity.setBackgroundResource(R.drawable.ic_launcher2);
-                    //imageactivity.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher2));
-                    //imageactivity.setImageResource(R.drawable.capture);
-                }
-                //imageactivity.setImageResource(idimage);
-                HashMap<String,String> employees = new HashMap<>();
 
-                employees.put(TAG_ID,id);
-                employees.put(TAG_NAME,nameactivity);
-                employees.put(TAG_PROPOSEBY,proposeby);
-                employees.put(TAG_LOC,location);
-                employees.put(TAG_DES,description);
-                employees.put(TAG_IMG,lienimg);
+                HashMap<String,String> data_activities = new HashMap<>();
 
-                list.add(employees);
+                data_activities.put(TAG_ID,id);
+                data_activities.put(TAG_NAME,nameactivity);
+                data_activities.put(TAG_PROPOSEBY,proposeby);
+                data_activities.put(TAG_LOC,location);
+                data_activities.put(TAG_DES,description);
+
+                list.add(data_activities);
             }
 
         } catch (JSONException e) {
@@ -143,7 +126,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                MainActivity2.this, list, R.layout.list_item,
+                Activities.this, list, R.layout.list_item_activity,
                 new String[]{
                         TAG_ID,
                         TAG_NAME,
@@ -173,7 +156,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MainActivity2.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(Activities.this,"Fetching Data","Wait...",false,false);
             }
 
             @Override
@@ -181,7 +164,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
                 super.onPostExecute(s);
                 loading.dismiss();
                 JSON_STRING = s;
-                showEmployee();
+                DisplayData();
             }
 
             @Override
@@ -198,11 +181,7 @@ public class MainActivity2 extends AppCompatActivity implements ListView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        /*Intent otherActivity = new Intent(getApplicationContext(), ViewActivities.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(TAG_ID).toString();
-        otherActivity.putExtra("act_id",empId);
-        startActivity(otherActivity);*/
+
         Intent intent = new Intent(this, ViewActivities.class);
         HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
         String empId = map.get(TAG_ID).toString();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.danielcc.myapplication3">
+    package="fr.danielcc.findyourspot">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".app.AppController"
+        android:name="fr.danielcc.findyourspot.app.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EventActivity"
+            android:name="fr.danielcc.findyourspot.EventActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <!--
@@ -35,22 +35,34 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="fr.danielcc.findyourspot.MapsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/title_activity_maps">
         </activity>
-        <activity android:name=".MainActivity2" >
+        <activity
+            android:name="fr.danielcc.findyourspot.Activities"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".MEActivity" />
+        <activity
+            android:name="fr.danielcc.findyourspot.MEActivity" >
+        </activity>
 
+        <activity
+            android:name="fr.danielcc.findyourspot.Register"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="fr.danielcc.findyourspot.ViewActivities"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="fr.danielcc.findyourspot.ViewEvents"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
 
-        <activity android:name=".Register" />
-        <activity android:name=".ViewActivities" />
-        <activity android:name=".ViewEvents" />
-
-
-        <activity android:name=".Server" />
-        <activity android:name=".Login" >
+        <activity android:name="fr.danielcc.findyourspot.Login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

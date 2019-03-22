@@ -1,4 +1,4 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,7 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import fr.danielcc.myapplication3.app.AppController;
+import fr.danielcc.findyourspot.app.AppController;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,10 +42,9 @@ public class Login extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
+    //TAG user
     public final static String TAG_USERNAME = "username";
     public final static String TAG_ID = "id";
-
-    //Tests données utilsateur;
     public String TAG_FIRSTNAME="firstname";
     public String TAG_LASTNAME="lastname";
     public String TAG_PSEUDO="pseudo";
@@ -81,14 +80,13 @@ public class Login extends AppCompatActivity {
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);
 
-        // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(session_status, false);
         id = sharedpreferences.getString(TAG_ID, null);
         username = sharedpreferences.getString(TAG_USERNAME, null);
 
 
-        //Si une session est ouverte se rendre à MEActivity
+        //If a session is opened go to MEActivity
         /*if (session) {
             Intent intent = new Intent(getApplicationContext(), MEActivity.class);
             intent.putExtra(TAG_ID, id);
@@ -106,7 +104,6 @@ public class Login extends AppCompatActivity {
                 String username = txt_username.getText().toString();
                 String password = txt_password.getText().toString();
 
-                // mengecek kolom yang kosong
                 if (username.trim().length() > 0 && password.trim().length() > 0) {
                     if (conMgr.getActiveNetworkInfo() != null
                             && conMgr.getActiveNetworkInfo().isAvailable()
@@ -170,14 +167,14 @@ public class Login extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
 
-                        // menyimpan login ke session
+
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putBoolean(session_status, true);
                         editor.putString(TAG_ID, id);
                         editor.putString(TAG_USERNAME, username);
 
 
-                        //Toujours tests
+                        //User's data
                         Server.firstname=firstname;
                         Server.lastname=lastname;
                         Server.dateofbirth=dateofbirth;

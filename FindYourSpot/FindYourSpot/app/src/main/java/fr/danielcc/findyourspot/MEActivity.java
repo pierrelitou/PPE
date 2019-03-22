@@ -1,9 +1,7 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -13,28 +11,20 @@ import android.widget.SimpleAdapter;
 import android.widget.Button;
 import android.view.View;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.content.Intent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MEActivity extends AppCompatActivity{
-    //Link to database
 
-
-    //JSON Tagsvity
+    //JSON TAGs
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_firstname = "firstname";
     public static final String TAG_lastname = "lastname";
     public static final String TAG_dateofbirth = "dateofbirth";
     public static final String TAG_pseudo = "pseudo";
 
-    //public ImageView photoprofil;
-
     private ListView listView;
-    private String JSON_STRING;
 
     private Button MAP;
     private Button ACTIVITIES;
@@ -56,14 +46,11 @@ public class MEActivity extends AppCompatActivity{
         listView = (ListView) findViewById(R.id.listView);
         photo = (ImageView) findViewById(R.id.photoprofil);
 
-        //String resource ="R.drawable." + Server.photoprofil;
         String pack = getPackageName();
         pack = pack + ":drawable/";
         pack = pack + Server.photoprofil;
         int id = getResources().getIdentifier(pack,null,null);
         photo.setImageResource(id);
-        //photo.setImageResource(R.drawable.daniel);
-        //photo.setImageDrawable(drawable.daniel);
 
         this.MAP = (Button) findViewById(R.id.CARTEME);
         this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESME);
@@ -92,7 +79,7 @@ public class MEActivity extends AppCompatActivity{
         ACTIVITIES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -128,21 +115,21 @@ public class MEActivity extends AppCompatActivity{
             }
         });
 
-        showEmployee();
+        DisplayData();
     }
 
-    private void showEmployee(){
+    private void DisplayData(){
 
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
 
-                HashMap<String,String> employees = new HashMap<>();
+                HashMap<String,String> data_profil = new HashMap<>();
 
-                employees.put(TAG_firstname,Server.firstname);
-                employees.put(TAG_lastname,Server.lastname);
-                employees.put(TAG_dateofbirth,Server.dateofbirth);
-                employees.put(TAG_pseudo,Server.pseudo);
+                data_profil.put(TAG_firstname,Server.firstname);
+                data_profil.put(TAG_lastname,Server.lastname);
+                data_profil.put(TAG_dateofbirth,Server.dateofbirth);
+                data_profil.put(TAG_pseudo,Server.pseudo);
 
-                list.add(employees);
+                list.add(data_profil);
 
 
 
