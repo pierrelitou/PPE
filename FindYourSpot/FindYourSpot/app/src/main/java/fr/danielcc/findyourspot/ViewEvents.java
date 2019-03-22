@@ -6,13 +6,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class ViewEvents extends AppCompatActivity {
     private EditText editTextId;
@@ -46,7 +51,12 @@ public class ViewEvents extends AppCompatActivity {
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         //buttonDelete = (Button) findViewById(R.id.buttonDelete);
 
-        //buttonUpdate.setOnClickListener(this);
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateEmployee();
+            }
+        });
         //buttonDelete.setOnClickListener(this);
 
         //editTextId.setText(id);
@@ -139,7 +149,7 @@ public class ViewEvents extends AppCompatActivity {
 
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendPostRequest(Server.URL + "participate.php?idactivity=",id);
+                String s = rh.sendPostRequest(Server.URL + "participate.php",hashMap);
 
 
                 return s;
@@ -202,16 +212,15 @@ public class ViewEvents extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();*/
- /*   }
+ /*  }
     @Override
-    public void onClick(View v) {
+    public void button(View v) {
         if(v == buttonUpdate){
             updateEmployee();
         }
 
-        if (v == buttonDelete){
-            //confirmDeleteEmployee();
-        }
     }*/
+
+
 
 }
