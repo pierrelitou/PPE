@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 21 mars 2019 à 11:04
+-- Généré le :  ven. 22 mars 2019 à 15:23
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -52,6 +52,26 @@ INSERT INTO `activity` (`id`, `nameactivity`, `location`, `description`, `dateev
 (1, 'Degustation de Vins', 'Les caves de la Villette, Paris XIX', 'Degustation et decouverte de produits du terroir', '2019-03-05 14:00:00', 'Andre', NULL, 'capture.png', 0, 48.888, 2.39216),
 (2, 'Randonnee', 'Catacombes de Paris, Paris XIV', 'Une decouverte des catacombes de Paris qui vous fera peur', '2019-03-07 00:00:00', 'Marc', NULL, 'capture.png\r\n', 0, 48.834, 2.33218),
 (3, 'Bowling', 'Bowling de Paris Front de Seine, Paris XV', 'Venez vous eclater avec moi au bowling', '2019-03-07 18:00:00', 'Pierre', NULL, '', 1, 48.8495, 2.28444);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participate`
+--
+
+DROP TABLE IF EXISTS `participate`;
+CREATE TABLE IF NOT EXISTS `participate` (
+  `iduser` int(11) NOT NULL,
+  `idactivity` int(11) NOT NULL,
+  PRIMARY KEY (`iduser`,`idactivity`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `participate`
+--
+
+INSERT INTO `participate` (`iduser`, `idactivity`) VALUES
+(1, 3);
 
 -- --------------------------------------------------------
 

@@ -26,32 +26,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ACTIVITES" />
+            android:background="@color/design_default_color_primary"
+            android:text="ACTIVITES"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/CARTEEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="MAP" />
+            android:background="@color/design_default_color_primary"
+            android:text="MAP"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/EVENEMENTEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="EVENT" />
+            android:background="@color/design_default_color_primary"
+            android:text="EVENT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/MEEV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ME" />
+            android:background="@color/design_default_color_primary"
+            android:text="ME"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

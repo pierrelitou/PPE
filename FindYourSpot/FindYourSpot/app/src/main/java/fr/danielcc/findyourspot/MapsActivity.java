@@ -1,4 +1,4 @@
-package fr.danielcc.myapplication3;
+package fr.danielcc.findyourspot;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -64,6 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         this.MAP = (Button) findViewById(R.id.CARTE);
+
+        MAP.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
+
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
