@@ -183,6 +183,7 @@ public class Login extends AppCompatActivity {
                         Server.dateofbirth=dateofbirth;
                         Server.pseudo=pseudo;
                         Server.photoprofil=photoprofil;
+                        Server.iduser=id;
 
                         editor.commit();
 

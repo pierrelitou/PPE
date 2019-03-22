@@ -30,6 +30,7 @@ public class ViewEvents extends AppCompatActivity {
     public static final String TAG_NAME = "nameactivity";
     public static final String TAG_DES = "description";
     public static final String TAG_LOC = "location";
+    public static final String TAG_ID = "iduser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,9 +114,9 @@ public class ViewEvents extends AppCompatActivity {
         }
     }
 
-  /*  private void updateEmployee(){
-        final String nama_barang = editTextName.getText().toString().trim();
-        final String harga_barang = editTextLocation.getText().toString().trim();
+    private void updateEmployee(){
+        final String idactivity = editTextName.getText().toString().trim();
+        final String iduser = editTextLocation.getText().toString().trim();
         final String jenis_barang = editTextDescription.getText().toString().trim();
 
         class UpdateEmployee extends AsyncTask<Void,Void,String>{
@@ -123,26 +124,25 @@ public class ViewEvents extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewActivities.this,"Updating...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewEvents.this,"Updating...","Wait...",false,false);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(ViewActivities.this,s,Toast.LENGTH_LONG).show();
+                Toast.makeText(ViewEvents.this,s,Toast.LENGTH_LONG).show();
             }
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put(Config.KEY_EMP_ID,id);
-                hashMap.put(Config.KEY_EMP_NAME,nama_barang);
-                hashMap.put(Config.KEY_EMP_DESG,harga_barang);
-                hashMap.put(Config.KEY_EMP_SAL,jenis_barang);
+                hashMap.put("idactivity",id);
+                hashMap.put("iduser",Server.iduser);
 
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendPostRequest(Config.URL_UPDATE_EMP,hashMap);
+                String s = rh.sendPostRequest(Server.URL + "participate.php?idactivity=",id);
+
 
                 return s;
             }

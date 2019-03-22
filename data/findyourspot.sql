@@ -156,6 +156,13 @@ INSERT INTO `users` (`id`, `username`, `pseudo`, `password`, `firstname`, `lastn
 (2, 'b@gmail.com', NULL, 'b', NULL, NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
+DROP TABLE IF EXISTS `participate`;
+CREATE TABLE IF NOT EXISTS `participate` (
+  `iduser` int(11) NOT NULL,
+  `idactivity` int(11)NOT NULL,
+  CONSTRAINT PK_participate PRIMARY KEY (`iduser`,`idactivity`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
