@@ -12,7 +12,7 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
     <LinearLayout
@@ -26,32 +26,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ACTIVITES" />
+            android:background="@color/design_default_color_primary"
+            android:text="ACTIVITES"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/CARTE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="MAP" />
+            android:background="@color/design_default_color_primary"
+            android:text="MAP"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/EVENEMENT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="EVENT" />
+            android:background="@color/design_default_color_primary"
+            android:text="EVENT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/MEMAP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="Me" />
+            android:background="@color/design_default_color_primary"
+            android:text="Me"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>

@@ -28,7 +28,7 @@ public class Register extends AppCompatActivity {
 
     ProgressDialog pDialog;
     Button btn_register, btn_login;
-    EditText txt_username, txt_password, txt_confirm_password;
+    EditText txt_username, txt_password, txt_confirm_password, txt_dateofbirth, txt_pseudo, txt_firstname, txt_lastname;
     Intent intent;
 
     int success;
@@ -64,6 +64,10 @@ public class Register extends AppCompatActivity {
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);
         txt_confirm_password = (EditText) findViewById(R.id.txt_confirm_password);
+        txt_dateofbirth = (EditText) findViewById(R.id.txt_dateofbirth);
+        txt_pseudo = (EditText) findViewById(R.id.txt_pseudo);
+        txt_firstname = (EditText) findViewById(R.id.txt_firstname);
+        txt_lastname = (EditText) findViewById(R.id.txt_lastname);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
 
@@ -84,11 +88,15 @@ public class Register extends AppCompatActivity {
                 String username = txt_username.getText().toString();
                 String password = txt_password.getText().toString();
                 String confirm_password = txt_confirm_password.getText().toString();
+                String dateofbirth = txt_dateofbirth.getText().toString();
+                String pseudo = txt_pseudo.getText().toString();
+                String firstname = txt_firstname.getText().toString();
+                String lastname = txt_lastname.getText().toString();
 
                 if (conMgr.getActiveNetworkInfo() != null
                         && conMgr.getActiveNetworkInfo().isAvailable()
                         && conMgr.getActiveNetworkInfo().isConnected()) {
-                    checkRegister(username, password, confirm_password);
+                    checkRegister(username, password, confirm_password,dateofbirth,pseudo,firstname,lastname);
                 } else {
                     Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
@@ -97,7 +105,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    private void checkRegister(final String username, final String password, final String confirm_password) {
+    private void checkRegister(final String username, final String password, final String confirm_password,final String dateofbirth,final String pseudo,final String firstname,final String lastname) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Register ...");
@@ -125,6 +133,10 @@ public class Register extends AppCompatActivity {
                         txt_username.setText("");
                         txt_password.setText("");
                         txt_confirm_password.setText("");
+                        txt_dateofbirth.setText("");
+                        txt_pseudo.setText("");
+                        txt_firstname.setText("");
+                        txt_lastname.setText("");
 
                     } else {
                         Toast.makeText(getApplicationContext(),
@@ -157,6 +169,10 @@ public class Register extends AppCompatActivity {
                 params.put("username", username);
                 params.put("password", password);
                 params.put("confirm_password", confirm_password);
+                params.put("dateofbirth",dateofbirth);
+                params.put("pseudo",pseudo);
+                params.put("firstname",firstname);
+                params.put("lastname",lastname);
 
                 return params;
             }

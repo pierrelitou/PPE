@@ -5,26 +5,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="bottom"
     android:gravity="bottom"
     android:orientation="vertical">
 
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="173dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"></ListView>
 
     <ImageView
         android:id="@+id/photoprofil"
         android:layout_width="194dp"
         android:layout_height="248dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="10dp"
 
-        android:src="@drawable/ic_launcher2" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/nophoto" />
 
+    <TextView
+        android:id="@+id/me_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/me_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/me_dateofbirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/me_pseudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:textAlignment="center" />
+    <!--
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Mes Participations :"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"></ListView>
+        </LinearLayout>
+    </ScrollView>
+    -->
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
@@ -41,38 +103,45 @@
         android:orientation="horizontal">
 
 
-
         <Button
             android:id="@+id/ACTIVITESME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ACTIVITES" />
+            android:background="@color/design_default_color_primary"
+            android:text="ACTIVITES"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/CARTEME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="MAP" />
+            android:background="@color/design_default_color_primary"
+            android:text="MAP"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/EVENEMENTME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="EVENT" />
+            android:background="@color/design_default_color_primary"
+            android:text="EVENT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/MEME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ME" />
+            android:background="@color/design_default_color_primary"
+            android:text="ME"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

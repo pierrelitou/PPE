@@ -9,13 +9,23 @@
     android:orientation="vertical"
     tools:context=".Activities">
 
-
-    <ListView
-        android:id="@+id/listView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        ></ListView>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="650dp"
+                android:layout_marginTop="50dp"></ListView>
+        </LinearLayout>
+    </ScrollView>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,32 +38,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ACTIVITES" />
+            android:background="@color/design_default_color_primary"
+            android:text="ACTIVITES"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/CARTEACT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="MAP" />
+            android:background="@color/design_default_color_primary"
+            android:text="MAP"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/EVENEMENTACT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="EVENT" />
+            android:background="@color/design_default_color_primary"
+            android:text="EVENT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/MEACT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="ME" />
+            android:background="@color/design_default_color_primary"
+            android:text="ME"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

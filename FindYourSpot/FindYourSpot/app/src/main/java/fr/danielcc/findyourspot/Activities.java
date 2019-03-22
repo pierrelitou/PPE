@@ -56,6 +56,8 @@ public class Activities extends AppCompatActivity implements ListView.OnItemClic
         this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
         this.ME = (Button) findViewById(R.id.MEACT);
 
+        ACTIVITIES.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
+
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +132,7 @@ public class Activities extends AppCompatActivity implements ListView.OnItemClic
                 new String[]{
                         TAG_ID,
                         TAG_NAME,
-                        TAG_PROPOSEBY,
+                        //TAG_PROPOSEBY,
                         TAG_IMG,
                         TAG_LOC,
                         TAG_DES
@@ -139,7 +141,7 @@ public class Activities extends AppCompatActivity implements ListView.OnItemClic
                 new int[]{
                         R.id.id,
                         R.id.nameactivity,
-                        R.id.proposeby,
+                        //R.id.proposeby,
                         R.id.testbdd,
                         R.id.location,
                         R.id.description

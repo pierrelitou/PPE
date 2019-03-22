@@ -13,7 +13,7 @@
 
 
     <TextView
-        android:id="@+id/firstname"
+        android:id="@+id/my_activities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -22,33 +22,7 @@
         android:layout_gravity="center"
         />
 
-    <TextView
-        android:id="@+id/lastname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        />
 
-    <TextView
-        android:id="@+id/dateofbirth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:lineSpacingExtra="18sp"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        />
-
-    <TextView
-        android:id="@+id/pseudo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        />
     <!--
     <TextView
         android:id="@+id/preference"

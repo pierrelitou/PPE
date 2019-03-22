@@ -6,18 +6,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 public class ViewEvents extends AppCompatActivity {
     private EditText editTextId;
@@ -33,7 +28,6 @@ public class ViewEvents extends AppCompatActivity {
     public static final String TAG_NAME = "nameactivity";
     public static final String TAG_DES = "description";
     public static final String TAG_LOC = "location";
-    public static final String TAG_ID = "iduser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +45,7 @@ public class ViewEvents extends AppCompatActivity {
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         //buttonDelete = (Button) findViewById(R.id.buttonDelete);
 
-        buttonUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateEmployee();
-            }
-        });
+        //buttonUpdate.setOnClickListener(this);
         //buttonDelete.setOnClickListener(this);
 
         //editTextId.setText(id);
@@ -122,9 +111,9 @@ public class ViewEvents extends AppCompatActivity {
         }
     }
 
-    private void updateEmployee(){
-        final String idactivity = editTextName.getText().toString().trim();
-        final String iduser = editTextLocation.getText().toString().trim();
+  /*  private void updateEmployee(){
+        final String nama_barang = editTextName.getText().toString().trim();
+        final String harga_barang = editTextLocation.getText().toString().trim();
         final String jenis_barang = editTextDescription.getText().toString().trim();
 
         class UpdateEmployee extends AsyncTask<Void,Void,String>{
@@ -132,25 +121,26 @@ public class ViewEvents extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewEvents.this,"Updating...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewActivities.this,"Updating...","Wait...",false,false);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(ViewEvents.this,s,Toast.LENGTH_LONG).show();
+                Toast.makeText(ViewActivities.this,s,Toast.LENGTH_LONG).show();
             }
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put("idactivity",id);
-                hashMap.put("iduser",Server.iduser);
+                hashMap.put(Config.KEY_EMP_ID,id);
+                hashMap.put(Config.KEY_EMP_NAME,nama_barang);
+                hashMap.put(Config.KEY_EMP_DESG,harga_barang);
+                hashMap.put(Config.KEY_EMP_SAL,jenis_barang);
 
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendPostRequest(Server.URL + "participate.php",hashMap);
-
+                String s = rh.sendPostRequest(Config.URL_UPDATE_EMP,hashMap);
 
                 return s;
             }
@@ -212,15 +202,16 @@ public class ViewEvents extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();*/
- /*  }
+ /*   }
     @Override
-    public void button(View v) {
+    public void onClick(View v) {
         if(v == buttonUpdate){
             updateEmployee();
         }
 
+        if (v == buttonDelete){
+            //confirmDeleteEmployee();
+        }
     }*/
-
-
 
 }

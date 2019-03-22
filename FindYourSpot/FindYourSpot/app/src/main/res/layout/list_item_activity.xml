@@ -26,6 +26,7 @@
         android:textStyle="bold"
         android:layout_gravity="center"/>
 
+    <!--
     <TextView
         android:id="@+id/proposeby"
         android:layout_width="wrap_content"
@@ -34,7 +35,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_gravity="center"/>
-
+       -->
     <ImageView
         android:id="@+id/lienimg"
         android:layout_width="100dp"

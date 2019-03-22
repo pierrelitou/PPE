@@ -59,6 +59,8 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
         this.EVENT = (Button) findViewById(R.id.EVENEMENTEV);
         this.ME = (Button) findViewById(R.id.MEEV);
 
+        EVENT.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
+
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

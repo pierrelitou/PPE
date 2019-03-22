@@ -62,6 +62,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         this.MAP = (Button) findViewById(R.id.CARTE);
+
+        MAP.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
+
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
