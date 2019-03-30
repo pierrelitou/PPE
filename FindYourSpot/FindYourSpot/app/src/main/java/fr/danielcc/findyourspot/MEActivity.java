@@ -135,6 +135,7 @@ public class MEActivity extends AppCompatActivity{
                 Server.lastname="";
                 Server.firstname="";
                 Server.photoprofil="";
+                Server.iduser="";
                 editor.commit();
                 startActivity(otherActivity);
                 finish();
