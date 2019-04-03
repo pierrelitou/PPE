@@ -132,13 +132,13 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
         ListAdapter adapter = new SimpleAdapter(
                 EventActivity.this, list, R.layout.list_item_event,
                 new String[]{
-                        TAG_ID,
+                        //TAG_ID,
                         TAG_NAME,
                         TAG_LOC,
                         TAG_DES,
                 },
                 new int[]{
-                        R.id.id,
+                        //R.id.id,
                         R.id.nameactivity,
                         R.id.location,
                         R.id.description,

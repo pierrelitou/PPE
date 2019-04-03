@@ -11,4 +11,5 @@ public class Server {
     public static String dateofbirth="";
     public static String pseudo="";
     public static String photoprofil="";
+    public static String iduser="";
 }

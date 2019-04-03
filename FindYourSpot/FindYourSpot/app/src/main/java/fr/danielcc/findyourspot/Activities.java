@@ -130,7 +130,7 @@ public class Activities extends AppCompatActivity implements ListView.OnItemClic
         ListAdapter adapter = new SimpleAdapter(
                 Activities.this, list, R.layout.list_item_activity,
                 new String[]{
-                        TAG_ID,
+                        //TAG_ID,
                         TAG_NAME,
                         //TAG_PROPOSEBY,
                         TAG_IMG,
@@ -139,7 +139,7 @@ public class Activities extends AppCompatActivity implements ListView.OnItemClic
 
                           },
                 new int[]{
-                        R.id.id,
+                        //R.id.id,
                         R.id.nameactivity,
                         //R.id.proposeby,
                         R.id.testbdd,
