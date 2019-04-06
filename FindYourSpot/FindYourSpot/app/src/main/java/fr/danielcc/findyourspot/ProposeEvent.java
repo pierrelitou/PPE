@@ -110,7 +110,7 @@ public class ProposeEvent extends AppCompatActivity {
                     // Check for error node in json
                     if (success == 1) {
 
-                        Log.e("Successfully Submitted !", jObj.toString());
+                        Log.e("Successfully Submitted!", jObj.toString());
 
                         Toast.makeText(getApplicationContext(),
                                 jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
