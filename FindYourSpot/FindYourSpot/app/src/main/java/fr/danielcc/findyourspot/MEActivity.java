@@ -46,6 +46,7 @@ public class MEActivity extends AppCompatActivity{
     private Button EVENT;
     private Button ME;
     private Button logout;
+    private Button my_activities;
 
     private ImageView photo;
     SharedPreferences sharedpreferences;
@@ -57,6 +58,7 @@ public class MEActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me);
+        listView = (ListView) findViewById(R.id.listView);
 
         firstname = (TextView) findViewById(R.id.me_firstname);
         lastname = (TextView) findViewById(R.id.me_lastname);
@@ -82,6 +84,7 @@ public class MEActivity extends AppCompatActivity{
         this.EVENT = (Button) findViewById(R.id.EVENEMENTME);
         this.ME = (Button) findViewById(R.id.MEME);
         this.logout = (Button) findViewById(R.id.logout);
+        this.my_activities = (Button) findViewById(R.id.my_activities);
 
         ME.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
         MAP.setOnClickListener(new View.OnClickListener() {
@@ -142,9 +145,17 @@ public class MEActivity extends AppCompatActivity{
             }
         });
 
+        my_activities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), ViewMyActivities.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
         //DisplayData();
     }
-
+    /*
     private void DisplayData(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
@@ -208,6 +219,6 @@ public class MEActivity extends AppCompatActivity{
 
     }
 
-
+*/
 }
 
