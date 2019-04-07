@@ -13,6 +13,7 @@
 
     <TextView
         android:id="@+id/nameactivity"
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -32,6 +33,7 @@
        -->
     <ImageView
         android:id="@+id/lienimg"
+        android:layout_margin="5dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_launcher2"
@@ -40,18 +42,21 @@
 
     <TextView
         android:id="@+id/location"
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/description"
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/testbdd"
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>

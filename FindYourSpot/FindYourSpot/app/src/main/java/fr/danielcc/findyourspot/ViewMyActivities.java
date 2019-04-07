@@ -1,17 +1,15 @@
 package fr.danielcc.findyourspot;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
-import android.widget.AdapterView;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Button;
-import android.view.View;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,19 +18,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-public class EventActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+public class ViewMyActivities extends AppCompatActivity {
 
     //Link to database
-    public static final String URL_GET_ALL = Server.URL + "GetEvent.php";
+    public static final String URL_GET_ALL = Server.URL + "GetMyActivities.php";
 
-    //JSON TAGs
+    //JSON Tagsvity
     public static final String TAG_JSON_ARRAY="result";
-    public static final String TAG_ID = "id";
     public static final String TAG_NAME = "nameactivity";
     public static final String TAG_LOC = "location";
+    public static final String TAG_DATEEVENT = "dateevent";
     public static final String TAG_DES = "description";
-
 
     private ListView listView;
     private String JSON_STRING;
@@ -41,41 +37,25 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
     private Button ACTIVITIES;
     private Button EVENT;
     private Button ME;
-    private Button propose_event;
 
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
-
+        setContentView(R.layout.my_activities);
         listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(this);
-
-        //recupération des paquets JSON
+        //listView.setOnItemClickListener(this);
         getJSON();
 
-        this.MAP = (Button) findViewById(R.id.CARTEEV);
-        this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESEV);
-        this.EVENT = (Button) findViewById(R.id.EVENEMENTEV);
-        this.ME = (Button) findViewById(R.id.MEEV);
-        this.propose_event = (Button) findViewById(R.id.propose_event);
+        this.MAP = (Button) findViewById(R.id.CARTEACT);
+        this.ACTIVITIES = (Button) findViewById(R.id.ACTIVITESACT);
+        this.EVENT = (Button) findViewById(R.id.EVENEMENTACT);
+        this.ME = (Button) findViewById(R.id.MEACT);
 
-        EVENT.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
+        //ACTIVITIES.setTextColor(getApplicationContext().getResources().getColor(R.color.ColorTextActivityEnable));
 
         MAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
-
-        ACTIVITIES.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -90,6 +70,15 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
             }
         });
 
+        ACTIVITIES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), Activities.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
         ME.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,19 +88,9 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
             }
         });
 
-        propose_event.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), ProposeEvent.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
+
     }
 
-    /**
-     *
-     */
     private void DisplayData(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
@@ -121,19 +100,21 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
-                String id = jo.getString(TAG_ID);
+                //String id = jo.getString(TAG_ID);
                 String nameactivity = jo.getString(TAG_NAME);
+                String dateevent = jo.getString(TAG_DATEEVENT);
                 String location = jo.getString(TAG_LOC);
                 String description = jo.getString(TAG_DES);
 
-                HashMap<String,String> dataevent = new HashMap<>();
+                HashMap<String,String> data_activities = new HashMap<>();
 
-                dataevent.put(TAG_ID,id);
-                dataevent.put(TAG_NAME,nameactivity);
-                dataevent.put(TAG_LOC,location);
-                dataevent.put(TAG_DES,description);
+                //data_activities.put(TAG_ID,id);
+                data_activities.put(TAG_NAME,nameactivity);
+                data_activities.put(TAG_DATEEVENT,dateevent);
+                data_activities.put(TAG_LOC,location);
+                data_activities.put(TAG_DES,description);
 
-                list.add(dataevent);
+                list.add(data_activities);
             }
 
         } catch (JSONException e) {
@@ -141,18 +122,24 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                EventActivity.this, list, R.layout.list_item_event,
+                ViewMyActivities.this, list, R.layout.list_item_me,
                 new String[]{
                         //TAG_ID,
                         TAG_NAME,
+                        TAG_DATEEVENT,
+                        //TAG_IMG,
                         TAG_LOC,
-                        TAG_DES,
+                        TAG_DES
+
                 },
                 new int[]{
                         //R.id.id,
                         R.id.nameactivity,
+                        R.id.dateevent,
+                        //R.id.testbdd,
                         R.id.location,
-                        R.id.description,
+                        R.id.description
+
                 });
 
         listView.setAdapter(adapter);
@@ -165,7 +152,7 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(EventActivity.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ViewMyActivities.this,"Fetching Data","Wait...",false,false);
             }
 
             @Override
@@ -185,16 +172,6 @@ public class EventActivity extends AppCompatActivity implements ListView.OnItemC
         }
         GetJSON gj = new GetJSON();
         gj.execute();
+
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Intent intent = new Intent(this, ViewEvents.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(TAG_ID).toString();
-        intent.putExtra("event_id",empId);
-        startActivity(intent);
-    }
-
 }
