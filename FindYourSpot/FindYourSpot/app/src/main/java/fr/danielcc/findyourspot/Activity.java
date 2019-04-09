@@ -1,5 +1,4 @@
-package fr.danielcc.myapplication3;
-
+package fr.danielcc.findyourspot;
 
 public class Activity {
 

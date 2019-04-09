@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -187,16 +188,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //ArrayList listpositions = showEmployee();
-        //ArrayList<Activity> act = showEmployee();
-        ArrayList<HashMap<String, String>> act = showEmployee();
+
+        ArrayList<Activity> act = new ArrayList<>();
+        act.add(new Activity(48.888f,2.39216f,"Degustation de Vins","Degustation et decouverte de produits du terroir"));
+        act.add(new Activity(48.834f,2.33218f,"Randonnee","Une decouverte des catacombes de Paris qui vous fera peur"));
+        act.add(new Activity(48.8495f,2.28444f,"Bowling","Venez vous eclater avec moi au bowling"));
+
         for(int i = 0; i<act.size() ; i++){
-        //    mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(),act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(Float.parseFloat(act.get(i).get(TAG_LAT)),Float.parseFloat(act.get(i).get(TAG_LNG)))).title(act.get(i).get(TAG_TITLE)).snippet(act.get(i).get(TAG_DESC)));
+           mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(),act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
         }
 
         //mMap.addMarker(new MarkerOptions().position(new LatLng(10,10)).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(10,10)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(48.8517,2.2872)));
 
         // Add a marker in Sydney and move the camera
 
