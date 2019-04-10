@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -190,16 +191,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         ArrayList<Activity> act = new ArrayList<>();
-        act.add(new Activity(48.888f,2.39216f,"Degustation de Vins","Degustation et decouverte de produits du terroir"));
-        act.add(new Activity(48.834f,2.33218f,"Randonnee","Une decouverte des catacombes de Paris qui vous fera peur"));
-        act.add(new Activity(48.8495f,2.28444f,"Bowling","Venez vous eclater avec moi au bowling"));
+        act.add(new Activity(48.888f,2.39216f,"Degustation de Vins","Degustation et decouverte de produits du terroir",0));
+        act.add(new Activity(48.834f,2.33218f,"Randonnee","Une decouverte des catacombes de Paris qui vous fera peur",0));
+        act.add(new Activity(48.8495f,2.28444f,"Bowling","Venez vous eclater avec moi au bowling",1));
 
         for(int i = 0; i<act.size() ; i++){
-           mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(),act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
+            if (act.get(i).getEvent()==1) {
+                mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()).icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            }
+            else{
+                mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
+
+            }
         }
 
         //mMap.addMarker(new MarkerOptions().position(new LatLng(10,10)).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(48.8517,2.2872)));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         // Add a marker in Sydney and move the camera
 

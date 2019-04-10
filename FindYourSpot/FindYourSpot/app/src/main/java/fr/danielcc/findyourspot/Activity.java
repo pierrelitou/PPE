@@ -6,13 +6,16 @@ public class Activity {
     private float lng;
     private String title;
     private String desc;
+    private int event;
+    private String color;
 
 
-    public Activity(float lat, float lng, String title, String desc) {
+    public Activity(float lat, float lng, String title, String desc,int event) {
         this.lat = lat;
         this.lng = lng;
         this.title = title;
         this.desc = desc;
+        this.event = event;
     }
 
     public float getLat() {
@@ -45,6 +48,10 @@ public class Activity {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public int getEvent() {
+        return event;
     }
 
 }
