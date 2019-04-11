@@ -77,6 +77,12 @@ public class MEActivity extends AppCompatActivity{
         pack = pack + ":drawable/";
         pack = pack + Server.photoprofil;
         int id = getResources().getIdentifier(pack,null,null);
+        if (Server.photoprofil=="null"){
+            pack = getPackageName();
+            pack = pack + ":drawable/";
+            pack = pack+"nophoto";
+            id = getResources().getIdentifier(pack,null,null);
+        }
         photo.setImageResource(id);
 
         this.MAP = (Button) findViewById(R.id.CARTEME);
