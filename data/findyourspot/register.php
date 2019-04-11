@@ -9,6 +9,11 @@
 	 $username = $_POST["username"];
 	 $password = $_POST["password"];
 	 $confirm_password = $_POST["confirm_password"];
+	 $dof =$_POST["dateofbirth"];
+	 $pseudo=$_POST["pseudo"];
+	 $firstname=$_POST["firstname"];
+	 $lastname=$_POST["lastname"];
+
 
 	 if ((empty($username))) {
 	 	$response = new usr();
@@ -30,8 +35,8 @@
 		 	$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM users WHERE username='".$username."'"));
 
 		 	if ($num_rows == 0){
-		 		$query = mysqli_query($con, "INSERT INTO users (username, password) VALUES('".$username."','".$password."')");
-
+		 		$requete="INSERT INTO users(`username`, `pseudo`, `password`, `firstname`, `lastname`, `dateofbirth`) VALUES('".$username."','".$pseudo."','".$password."','".$firstname."','".$lastname."','".$dof."')";
+		 		$query = mysqli_query($con, $requete); 
 		 		if ($query){
 		 			$response = new usr();
 		 			$response->success = 1;
