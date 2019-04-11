@@ -191,17 +191,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         ArrayList<Activity> act = new ArrayList<>();
-        act.add(new Activity(48.888f,2.39216f,"Degustation de Vins","Degustation et decouverte de produits du terroir",0));
-        act.add(new Activity(48.834f,2.33218f,"Randonnee","Une decouverte des catacombes de Paris qui vous fera peur",0));
+        act.add(new Activity(48.888f,2.39216f,"Degustation de Vins","Degustation et decouverte de produits du terroir",1));
+        act.add(new Activity(48.834f,2.33218f,"Randonnee","Une decouverte des catacombes de Paris qui vous fera peur",1));
         act.add(new Activity(48.8495f,2.28444f,"Bowling","Venez vous eclater avec moi au bowling",1));
+        act.add(new Activity(48.8503f,2.29993f,"le pere Claude","Restaurant francais",0));
+        act.add(new Activity(48.8842f,2.33936f,"Cuillier Abbesses","Degustes un café torriffie sur place.",0));
+        act.add(new Activity(48.8517f,2.2872f,"your position","",2));
 
         for(int i = 0; i<act.size() ; i++){
             if (act.get(i).getEvent()==1) {
-                mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()).icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             }
             else{
-                mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
+                if(act.get(i).getEvent()==0){
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()));
+                }
+                else{
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(act.get(i).getLat(), act.get(i).getLng())).title(act.get(i).getTitle()).snippet(act.get(i).getDesc()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+
+                }
 
             }
         }

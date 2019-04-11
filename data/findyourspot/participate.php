@@ -5,7 +5,7 @@
 		
 		
 		$sql = "INSERT INTO participate (iduser, idactivity) VALUES('$id','$idactivity')";
-
+		echo $sql;
 		require_once('dbConnect.php');
 		
 		if(mysqli_query($con,$sql)){
