@@ -3,7 +3,7 @@ package fr.danielcc.findyourspot;
 public class Server {
 
 
-    //public static final String URL = "http://192.168.43.37/findyourspot/";
+    //public static final String URL = "http://192.168.43.82/findyourspot/";
     public static final String URL = "http://169.254.5.159/PPE2/data/findyourspot/";
 
     public static String firstname="";
